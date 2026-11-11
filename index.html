@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050b10">
+  <meta name="application-name" content="minesense-showcase-site">
+  <meta name="description" content="MineSense Atlas 矿运感知建筑综合实验平台，面向矿运场景研究，将激光雷达、毫米波雷达、视觉检测与实验复核汇入同一工作空间。">
+  <title>MineSense Atlas · 矿运感知建筑综合实验平台</title>
+  <link rel="canonical" href="https://wxy11117.github.io/MineSense-Atlas-Public/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="atlas.css">
+  <link rel="stylesheet" href="workbench.css">
+  <link rel="stylesheet" href="capabilities.css">
+  <link rel="stylesheet" href="motion.css">
+  <link rel="stylesheet" href="twin.css">
+  <link rel="stylesheet" href="flagship.css?v=7">
+  <link rel="stylesheet" href="ecosystem.css?v=9">
+  <link rel="stylesheet" href="downloads.css?v=1">
+</head>
+<body>
+  <canvas id="ambient-particles" aria-hidden="true"></canvas>
+  <div class="reading-progress" aria-hidden="true"><i></i></div>
+  <button class="motion-quick-toggle" id="motion-quick-toggle" type="button" aria-pressed="false" aria-label="关闭页面动效"><i aria-hidden="true">Ⅱ</i><span>动效：开启</span></button>
+  <div class="ambient" aria-hidden="true"><i></i><i></i></div>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header class="site-header">
+    <a class="wordmark" href="#" aria-label="MineSense Atlas 首页"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 25 16 3l13 22H3Z M10 25l6-10 6 10 M16 3v7"/></svg><span>MINESENSE <b>ATLAS</b><small>PERCEPTION. MAPPING. INSIGHT.</small></span></a>
+    <nav id="navigation" aria-label="主导航"><a href="#platform">平台概览</a><a href="#scenarios">应用场景</a><a href="#workspace">交互体验</a><a href="#digital-twin">地下孪生</a><a href="#ecosystem">技术生态</a><a href="#research">技术与研究</a><a class="mobile-download-link" href="#download">下载软件</a></nav>
+    <a class="header-cta" href="#download">下载软件 <span>↓</span></a>
+    <button class="menu-toggle" type="button" aria-controls="navigation" aria-expanded="false" aria-label="展开导航"><span></span><span></span></button>
+  </header>
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="signal-dot"></span> MINING RESEARCH / MULTISENSOR PERCEPTION</p>
+        <h1 id="hero-title">感知地下。<br><span>洞见前路。</span></h1>
+        <p class="hero-description">连接激光雷达、毫米波与视觉，<br>让矿运空间可观察，让实验过程可追溯。<br>从一帧感知，探索地下作业的更多可能。</p>
+        <div class="hero-actions"><a class="button button-lime" href="#workspace">探索交互体验 <span>↗</span></a><button class="text-button" type="button" data-scan-trigger>体验感知扫描 <span>⌁</span></button></div>
+        <p class="hero-product-name">矿运感知建筑综合实验平台</p>
+        <div class="hero-chips"><span>LiDAR</span><span>mmWave</span><span>YOLOv8m</span><span>Human Review</span></div>
+      </div>
+      <div class="hero-scene" id="scene">
+        <canvas id="spatial-scene" tabindex="0" role="img" aria-label="巷道与铲运车三维示意场景。拖动或使用方向键旋转视角，双击复位。所有目标和点云均为展示示意。"></canvas>
+        <div class="scene-top"><span><i></i> SPATIAL PERCEPTION</span><span>01 / FIELD VIEW</span></div>
+        <div class="hero-edition">ATLAS / SPATIAL EXPLORER</div>
+        <div class="scene-tag"><span class="crosshair">⌖</span><div>VEHICLE ORIGIN<small>+X 前 · +Y 左 · +Z 上</small></div></div>
+        <div class="scene-annotation"><span>探索每一层感知</span><i></i></div>
+        <div class="scene-controls" role="group" aria-label="示意场景感知图层">
+          <button type="button" data-layer="lidar" aria-pressed="true"><i class="lidar-dot"></i>LiDAR</button>
+          <button type="button" data-layer="radar" aria-pressed="true"><i class="radar-dot"></i>Radar</button>
+          <button type="button" data-layer="vision" aria-pressed="true"><i class="vision-dot"></i>Vision</button>
+          <button id="reset-scene" type="button" aria-label="复位场景" title="复位场景">↺</button>
+        </div>
+        <div class="scene-bottom"><span>拖动探索 / 双击复位</span><span>概念场景 · 非实测数据</span></div>
+        <p class="sr-only" id="scene-status" role="status"></p>
+      </div>
+      <div class="hero-bottom"><span><b>矿运感知 · 空间建图 · 实验复核</b> MINESENSE ATLAS</span><a href="#platform">了解平台 <span>↓</span></a><span class="hero-bottom-right">LOCAL-FIRST. EVIDENCE-DRIVEN.</span></div>
+    </section>
+
+    <div class="evidence-strip reveal" aria-label="平台功能概览">
+      <div class="evidence-intro"><span class="signal-dot"></span><p>连接每一层感知<small>PLATFORM AT A GLANCE</small></p></div>
+      <div><strong>03</strong><span>感知通道<small>激光 · 毫米波 · 视觉</small></span></div>
+      <div><strong>04</strong><span>交互工作空间<small>车辆 · 点云 · 视觉 · 测距</small></span></div>
+      <div><strong>06</strong><span>功能模块<small>从感知观察，到实验复核</small></span></div>
+    </div>
+
+    <section class="platform section-light" id="platform">
+      <div class="section-heading reveal"><p class="eyebrow">01 / THE PLATFORM</p><span class="section-index">从观测，到理解</span></div>
+      <div class="intro-grid reveal"><h2>不同的感知。<br>同一个<span class="serif-accent">空间。</span></h2><div><p class="large-copy">面向矿运场景的研究，从看清传感器的每一帧开始。</p><p class="muted-copy">MineSense Atlas 将激光点云、毫米波观测与摄像头画面放在同一个工作空间中。观察空间、关联时间、复核结果，让多传感器实验有迹可循。</p></div></div>
+      <div class="principles reveal"><div><span>01</span><h3>以车辆为参考</h3><p>统一前、左、上的观察约定</p></div><div><span>02</span><h3>以时间为线索</h3><p>查看同一源帧的画面与观测</p></div><div><span>03</span><h3>以证据为基础</h3><p>区分实测、推理、复核与预设</p></div></div>
+      <div class="sensor-grid reveal">
+        <article class="sensor-card"><div class="sensor-art art-lidar" aria-hidden="true"><div class="lidar-orbits"></div><div class="sensor-core">L</div><span>XYZ / POINT CLOUD</span></div><p class="eyebrow">01 / LIDAR</p><h3>描绘空间的轮廓</h3><p>查看原生三维点云，调整累积窗口和观察方向，以定向测距分析局部回波。</p><span class="card-caption">空间结构 · 距离观测</span></article>
+        <article class="sensor-card"><div class="sensor-art art-radar" aria-hidden="true"><div class="radar-rings"></div><div class="radar-ray"></div><div class="sensor-core">R</div><span>MMWAVE / RETURNS</span></div><p class="eyebrow">02 / MMWAVE</p><h3>保留另一种观测</h3><p>独立呈现毫米波雷达回波，与激光、视频并排观察，为不同环境下的对比实验保留依据。</p><span class="card-caption">独立回波 · 多源对照</span></article>
+        <article class="sensor-card"><div class="sensor-art art-vision" aria-hidden="true"><div class="vision-target"><i></i><b>PERSON</b></div><span>YOLOv8m / CANDIDATE</span></div><p class="eyebrow">03 / VISION</p><h3>让目标有迹可寻</h3><p>直接读取本机摄像头，用官方预训练 YOLOv8m 提供人员候选，再进入录像关联与人工复核。</p><span class="card-caption">视觉候选 · 人工复核</span></article>
+      </div>
+    </section>
+
+    <section class="scenarios section-dark" id="scenarios" aria-labelledby="scenarios-title">
+      <div class="section-heading reveal"><p class="eyebrow">02 / BUILT AROUND THE QUESTION</p><span class="section-index">从一个实际问题，进入研究</span></div>
+      <div class="scenario-heading reveal"><h2 id="scenarios-title">深入场景，<br><span>找到观察的起点。</span></h2><p>空间结构、人车关系、环境影响。<br>不同的研究问题，在同一套平台中找到对应的观察方式。</p></div>
+      <div class="scenario-tabs reveal" role="tablist" aria-label="研究应用场景">
+        <button type="button" id="scenario-geometry" data-scenario="geometry" role="tab" aria-selected="true" aria-controls="scenario-panel"><span>01</span><strong>巷道几何观察<small>TUNNEL GEOMETRY</small></strong><b aria-hidden="true">↗</b></button>
+        <button type="button" id="scenario-people" data-scenario="people" role="tab" aria-selected="false" aria-controls="scenario-panel" tabindex="-1"><span>02</span><strong>人车空间研究<small>HUMAN–VEHICLE SPACE</small></strong><b aria-hidden="true">↗</b></button>
+        <button type="button" id="scenario-environment" data-scenario="environment" role="tab" aria-selected="false" aria-controls="scenario-panel" tabindex="-1"><span>03</span><strong>环境条件对比<small>ENVIRONMENTAL RESEARCH</small></strong><b aria-hidden="true">↗</b></button>
+      </div>
+      <div class="scenario-panel reveal" id="scenario-panel" role="tabpanel" aria-labelledby="scenario-geometry">
+        <div class="scenario-diagram">
+          <div class="scenario-map-meta"><span>ATLAS / RESEARCH FIELD</span><span>概念矿道 · 非实测地图</span></div>
+          <svg viewBox="0 0 600 430" role="img" aria-label="概念巷道平面示意：几何观察区、车辆与人员预设区、环境研究节点。数字标签与上方三个研究场景对应。">
+            <defs><pattern id="field-grid" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M30 0H0V30" class="map-grid"/></pattern></defs>
+            <rect width="600" height="430" fill="url(#field-grid)"/>
+            <g class="map-contour"><path d="M-30 170Q140 50 280 82T650 135M-30 146Q140 20 280 54T650 108M-30 121Q140 -10 280 26T650 80M-30 320Q140 335 290 382T650 350M-30 345Q140 360 290 407T650 375"/><path d="M30 68L70 88M540 345L560 365M480 75L485 100"/></g>
+            <path class="mine-outline" d="M44 212H216V102H294V212H557V287H306V342H232V287H44Z"/>
+            <path class="mine-inner" d="M54 223H228V114H282V224H546V275H294V330H244V275H54Z"/>
+            <path class="mine-route" d="M75 251H518M255 250V125"/>
+            <path class="map-trace" d="M75 251H518M255 250V125"/>
+            <path class="map-lidar-cone" d="M350 251L112 216V286Z"/>
+            <g fill="#65cbb3" opacity=".65"><circle cx="115" cy="222" r="2"/><circle cx="130" cy="222" r="1.8"/><circle cx="145" cy="222" r="2"/><circle cx="160" cy="222" r="1.5"/><circle cx="175" cy="222" r="2"/><circle cx="190" cy="222" r="1.7"/><circle cx="115" cy="278" r="2"/><circle cx="130" cy="278" r="1.5"/><circle cx="145" cy="278" r="2"/><circle cx="160" cy="278" r="1.8"/><circle cx="175" cy="278" r="2"/><circle cx="190" cy="278" r="1.5"/></g>
+            <g transform="translate(365 249)"><rect x="-35" y="-17" width="65" height="34" rx="4" fill="#215564" stroke="#8cbbbd"/><path d="M-39 -20V20L-56 24V-24Z" fill="#47796e" stroke="#b3d4ba"/><rect x="-19" y="-12" width="19" height="24" fill="#5c97a2"/><path d="M4 -16V16M16 -13V13M23 -13V13" stroke="#10333f" stroke-width="3"/><path d="M-27 -20H-12M-27 20H-12M13 -20H27M13 20H27" stroke="#071016" stroke-width="7"/><circle cx="1" cy="0" r="4" fill="#a4eed9"/></g>
+            <g transform="translate(445 252)" fill="#d8bf85"><circle cy="-6" r="4"/><path d="M-4 0H4L7 13H3L2 23H-2L-3 13H-7Z"/></g>
+            <g class="map-zone is-active" data-map-zone="01" transform="translate(147 251)"><circle class="map-zone-ring" r="49"/><circle class="map-zone-core" cy="-64" r="16"/><text y="-60">01</text></g>
+            <g class="map-zone" data-map-zone="02" transform="translate(390 251)"><ellipse class="map-zone-ring" rx="92" ry="46"/><circle class="map-zone-core" cy="-64" r="16"/><text y="-60">02</text></g>
+            <g class="map-zone" data-map-zone="03" transform="translate(255 151)"><circle class="map-zone-ring" r="41"/><circle class="map-zone-core" r="16"/><text y="4">03</text><circle cx="22" cy="-21" r="2" fill="#77d8c5"/><circle cx="-22" cy="16" r="3" fill="#77d8c5"/></g>
+            <text x="59" y="315" class="map-caption">几何观测区</text><text x="331" y="315" class="map-caption">车体参考 / 人员预设</text><text x="310" y="137" class="map-caption">环境研究节点</text>
+            <g transform="translate(548 100)" stroke="#7fa7b4" fill="none"><path d="M0 18V-14M-5 -5L0 -14L5 -5"/><text x="0" y="-23" text-anchor="middle" class="map-label">+X</text></g>
+            <path d="M482 345H551M482 341V349M551 341V349" stroke="#57818f"/><text x="482" y="367" class="map-caption">示意 / 不用于测量</text>
+          </svg>
+          <div class="scenario-map-key"><span id="scenario-map-label">方向选区 / 几何观察</span><span>切换上方场景，查看研究路径</span></div>
+        </div>
+        <div class="scenario-copy" aria-live="polite" aria-atomic="true">
+          <p class="eyebrow" id="scenario-kicker">01 / TUNNEL GEOMETRY</p><h3 id="scenario-title">先看清巷道，再讨论感知。</h3><p id="scenario-description">在激光点云中观察巷道的轮廓与局部回波。以方向选区提出具体问题：这个方向有什么，距离如何分布，哪些回波值得回看。</p>
+          <dl><div><dt>观察输入</dt><dd id="scenario-input">激光 XYZ 点云 · 毫米波独立回波</dd></div><div><dt>研究线索</dt><dd id="scenario-output">空间视图 · 定向距离统计 · 源帧线索</dd></div></dl>
+          <div class="scenario-actions"><span class="scenario-status" id="scenario-status">已有点云与测距界面</span><a id="scenario-link" href="#workspace"><span>体验定向测距</span><b aria-hidden="true">↗</b></a></div>
+        </div>
+      </div>
+      <p class="scenario-footnote">应用场景用于说明研究方向。图中矿道、车辆和人员均为概念示意，真实观测与复核在本机实验工作台中完成。</p>
+    </section>
+
+    <section class="architecture section-dark" id="architecture" aria-labelledby="architecture-title">
+      <div class="section-heading reveal"><p class="eyebrow">03 / CONNECTED ARCHITECTURE</p><span class="section-index">从多源输入，到可复核输出</span></div>
+      <div class="workspace-heading reveal"><h2 id="architecture-title">连接每一层感知，<br><span>看清每一步依据。</span></h2><p>点击架构节点，了解数据如何进入平台、<br>如何被查看，以及哪些环节还需要验证。</p></div>
+      <div class="architecture-console reveal">
+        <div class="architecture-map">
+          <div class="graph-caption"><span>ATLAS / SYSTEM MAP</span><span>交互架构图 <i>↙</i></span></div>
+          <div class="graph-stages"><span>01 · 观测输入</span><span>02 · 平台工作空间</span><span>03 · 实验输出</span></div>
+          <div class="graph-body">
+            <svg class="graph-lines" viewBox="0 0 760 300" preserveAspectRatio="none" aria-hidden="true"><path d="M160 45H230Q250 45 250 65V130Q250 150 270 150H380M160 150H380M160 255H230Q250 255 250 235V170Q250 150 270 150H380M380 150H490Q510 150 510 130V65Q510 45 530 45H600M380 150H600M380 150H490Q510 150 510 170V235Q510 255 530 255H600"/><path class="flow-line" d="M160 150H600"/></svg>
+            <div class="graph-column"><button class="graph-node selected" data-node="lidar" aria-pressed="true" aria-controls="architecture-detail"><i>⌖</i><span>激光雷达<small>空间结构 / 测距</small></span></button><button class="graph-node" data-node="radar" aria-pressed="false" aria-controls="architecture-detail"><i>◉</i><span>毫米波雷达<small>原生回波 / 对照</small></span></button><button class="graph-node" data-node="camera" aria-pressed="false" aria-controls="architecture-detail"><i>▣</i><span>摄像头 + YOLO<small>画面 / 人员候选</small></span></button></div>
+            <div class="graph-hub"><button class="graph-node hub-node" data-node="atlas" aria-pressed="false" aria-controls="architecture-detail"><span class="hub-symbol">A</span><span>MineSense Atlas<small>时间关联 · 空间查看</small></span></button><span>统一工作空间</span></div>
+            <div class="graph-column graph-output"><button class="graph-node" data-node="review" aria-pressed="false" aria-controls="architecture-detail"><i>✓</i><span>复核与导出<small>来源明确 / 独立记录</small></span></button><button class="graph-node" data-node="mie" aria-pressed="false" aria-controls="architecture-detail"><i>≋</i><span>Mie 条件实验<small>仿真条件 / 算法对比</small></span></button><button class="graph-node pending-node" data-node="vehicle" aria-pressed="false" aria-controls="architecture-detail"><i>↗</i><span>车辆与移动建图<small>后续接入 / 待验证</small></span></button></div>
+          </div>
+          <p class="graph-note">连线表示数据使用路径；不代表已完成自动融合定位。</p>
+        </div>
+        <aside class="architecture-detail" id="architecture-detail" aria-live="polite" aria-atomic="true"><p class="eyebrow" id="architecture-kicker">INPUT / 01</p><span class="status-label" id="architecture-status"><i class="signal-dot"></i> 已有软件能力</span><h3 id="architecture-name">激光雷达</h3><p id="architecture-description">原始 XYZ 点云进入点云空间，以传感器原生坐标显示。可切换视角、累积窗口与颜色，并选定角度范围持续测距。</p><dl><dt>提供什么</dt><dd id="architecture-output">空间几何、方向内回波距离与点数。</dd><dt>如何使用</dt><dd id="architecture-limit">原始点云显示与移动 SLAM 分开；车体坐标转换需要安装外参验证。</dd></dl><a href="#workspace">体验功能演示 <span>↗</span></a></aside>
+      </div>
+    </section>
+
+    <section class="workspace section-dark" id="workspace">
+      <div class="section-heading reveal"><p class="eyebrow">04 / INSIDE ATLAS</p><span class="section-index">为复杂实验，留出清晰的空间</span></div>
+      <div class="workspace-heading reveal"><h2>每一种感知，<br><span>都可以亲手探索。</span></h2><p>旋转视角，调整参数，观察图形如何响应。<br>通过四个交互模块，了解平台的工作方式。</p></div>
+      <div class="workspace-tabs reveal" role="tablist" aria-label="交互功能演示">
+        <button id="view-vehicle" role="tab" aria-selected="true" aria-controls="workspace-panel" data-view="vehicle"><i aria-hidden="true">⌖</i><span>车辆空间<small>以车体为原点，预设人员方位</small></span><b aria-hidden="true">↗</b></button>
+        <button id="view-radar" role="tab" aria-selected="false" aria-controls="workspace-panel" tabindex="-1" data-view="radar"><i aria-hidden="true">◉</i><span>点云空间<small>探索结构，切换点云着色</small></span><b aria-hidden="true">↗</b></button>
+        <button id="view-vision" role="tab" aria-selected="false" aria-controls="workspace-panel" tabindex="-1" data-view="vision"><i aria-hidden="true">▣</i><span>视觉感知<small>调整阈值，查看候选框变化</small></span><b aria-hidden="true">↗</b></button>
+        <button id="view-direction" role="tab" aria-selected="false" aria-controls="workspace-panel" tabindex="-1" data-view="direction"><i aria-hidden="true">↗</i><span>定向测距<small>指定角度，预览空间选区</small></span><b aria-hidden="true">↗</b></button>
+      </div>
+      <div class="workspace-console reveal" id="workspace-panel" role="tabpanel" aria-labelledby="view-vehicle">
+      <div class="workspace-frame" id="interactive-workbench">
+        <div class="window-toolbar"><div><i></i><i></i><i></i></div><span>MINESENSE ATLAS / VEHICLE WORKSPACE</span><button type="button" id="expand-workspace">放大查看 ↗</button></div>
+        <div class="demo-heading"><div><span class="demo-icon" aria-hidden="true">⌖</span><div><p id="demo-kicker">VEHICLE / SPATIAL PRESET</p><h3 id="demo-title">车体坐标与人员预设</h3></div></div><span class="demo-badge">交互演示 · 非实测</span></div>
+        <div class="demo-layout">
+          <div class="demo-viewport"><div class="demo-scene-meta"><span id="demo-scene-label">B · 车体坐标 / m</span><span id="demo-scene-state">空间布局预设</span></div><canvas id="workbench-canvas" tabindex="0" role="img" aria-label="可交互的车体坐标示意。拖动或方向键旋转，点击后滚轮缩放，Home 复位。"></canvas><div class="demo-view-tools"><button type="button" data-demo-camera="perspective">透视</button><button type="button" data-demo-camera="top">俯视</button><button type="button" data-demo-camera="reset">复位</button><span>拖动旋转 · 点击后滚轮缩放</span></div></div>
+          <div class="demo-settings" id="demo-settings"></div>
+        </div>
+        <div class="demo-readouts" id="demo-readouts" aria-label="演示状态"></div>
+        <div class="workspace-footnote"><span><i class="signal-dot"></i> 浏览器交互演示</span><p id="workspace-source">程序绘制的示意场景 · 无设备连接</p></div>
+      </div>
+      <aside class="workspace-context" aria-live="polite"><p class="eyebrow" id="workspace-kicker">WORKSPACE / 01</p><span class="context-icon" id="workspace-icon" aria-hidden="true">⌖</span><h3 id="workspace-title">在车体坐标中<br>理解周围空间</h3><p id="workspace-description">简化三维铲运车与人员位置预设，帮助规划感知布局。透视、俯视和视频查看集中在同一页面。</p><div class="context-facts" id="workspace-facts"><span>+X 前 / +Y 左 / +Z 上</span><span>三维视角与手动人员预设</span><span>树莓派已接入 · 状态映射待验证</span></div><p class="context-note" id="workspace-note">车辆与人员均为程序绘制的预设，不表示实际人员定位。</p><button type="button" class="text-button" id="next-workspace">下一个界面 <span>→</span></button></aside>
+      </div>
+      <div class="workspace-details reveal"><p><span>图形可操作</span>直接拖动、切换视角，<br>在网页中探索空间。</p><p><span>参数有反馈</span>调整角度、范围或阈值，<br>立即查看图形变化。</p><p><span>来源有说明</span>这里为功能交互演示，<br>实际采集请进入本机工作台。</p></div>
+    </section>
+
+    <section class="twin-section section-dark" id="digital-twin" aria-labelledby="twin-title">
+      <div class="section-heading reveal"><p class="eyebrow">05 / UNDERGROUND DIGITAL TWIN</p><span class="section-index">让一段作业，在空间中展开</span></div>
+      <div class="twin-heading reveal"><h2 id="twin-title">深入矿道，<br><span>看见每一次运转。</span></h2><p>从装载点到卸载点，跟随一辆 LHD。<br>在可交互的矿道场景中，探索车辆、人员、感知与作业流程的空间关系。</p></div>
+      <div class="twin-shell reveal" id="twin-viewer">
+        <div class="twin-topbar"><span>ATLAS / LHD UNDERGROUND OPERATIONS</span><div class="twin-badges"><span>数字孪生 · 演示模式</span><span>预设场景驱动</span></div></div>
+        <div class="twin-grid">
+          <div class="twin-viewport">
+            <canvas class="twin-canvas" id="twin-canvas" tabindex="0" role="img" aria-label="地下矿道 LHD 作业演示。拖动或方向键旋转，点击后滚轮缩放，Home 复位。作业动画自动循环，场景和状态均为模拟。"></canvas>
+            <div class="twin-overlay"><span>LEVEL −120 / CONCEPT MINE</span><strong>01 矿道作业区</strong></div>
+            <div class="twin-view-controls" role="group" aria-label="孪生场景视角"><button type="button" data-twin-view="overview" aria-pressed="true">全景</button><button type="button" data-twin-view="follow" aria-pressed="false">跟车</button><button type="button" data-twin-view="top" aria-pressed="false">俯视</button></div>
+            <div class="twin-map-badge">LHD–01 <b>· +X 车头前方</b></div>
+            <div class="twin-bottom-hint"><span>拖动旋转 · 点击后滚轮缩放 · 双击复位</span><span>概念矿道 / 非实测建图</span></div>
+          </div>
+          <aside class="twin-sidebar" aria-label="模拟作业状态">
+            <p class="eyebrow">SIMULATED OPERATION</p><h3 class="twin-phase-title" id="twin-phase-title">重载运输</h3><p class="twin-phase-caption" id="twin-phase-caption">沿预设矿道运送矿石，扫描图层随车移动。</p>
+            <dl class="twin-readings"><div><dt>模拟车速</dt><dd><span id="twin-speed-value">0.00</span><small>m/s</small></dd></div><div><dt>模拟装载</dt><dd><span id="twin-load-value">100</span><small>%</small></dd></div><div class="wide"><dt>场景坐标 X / Y / Z · m</dt><dd id="twin-coordinate">−9.5, −1.4, 0.0</dd></div></dl>
+            <div class="twin-legend"><span><i></i>运输路径</span><span><i></i>人员</span><span><i></i>返回路径</span></div>
+            <div class="twin-layers" role="group" aria-label="孪生场景图层"><button type="button" data-twin-layer="scan" aria-pressed="true">感知扫描</button><button type="button" data-twin-layer="route" aria-pressed="true">作业路线</button><button type="button" data-twin-layer="people" aria-pressed="true">人员预设</button></div>
+            <p class="twin-status-note" id="twin-state-note">自动循环演示 · 非车辆实时反馈</p>
+          </aside>
+        </div>
+        <div class="twin-stages" role="group" aria-label="当前作业阶段"><div data-twin-stage="0" aria-current="false"><b>01</b><span>铲装<small>LOAD</small></span></div><div data-twin-stage="1" aria-current="true"><b>02</b><span>运输<small>HAUL</small></span></div><div data-twin-stage="2" aria-current="false"><b>03</b><span>卸载<small>DUMP</small></span></div><div data-twin-stage="3" aria-current="false"><b>04</b><span>返回<small>RETURN</small></span></div></div>
+      </div>
+      <div class="twin-description reveal"><div><h3>空间，在同一处对应</h3><p>剖面矿道、装卸节点与人员预设，建立可以旋转观察的作业空间。</p></div><div><h3>作业，沿时间展开</h3><p>铲装、运输、卸载与返回自动循环，车轮与铲斗随作业过程联动。</p></div><div><h3>感知，随车辆移动</h3><p>切换随车扫描、路线与人员图层，从全景、跟车或俯视理解周围关系。</p></div></div>
+      <p class="twin-note"><strong>当前为数字孪生演示原型。</strong>矿道、轨迹、车速、载荷及人员位置均由预设场景生成；尚未绑定真实车辆、实测地图或定位反馈，不代表已完成自动驾驶控制或动力学验证。</p>
+    </section>
+
+    <section class="ecosystem section-dark" id="ecosystem" aria-labelledby="ecosystem-title">
+      <div class="section-heading reveal"><p class="eyebrow">06 / LHD & DIGITAL TWIN ECOSYSTEM</p><span class="section-index">从车端，到数字空间</span></div>
+      <div class="eco-heading reveal"><h2 id="ecosystem-title">铲运车与数字孪生，<br><span>连接成一个技术生态。</span></h2><p>以真实车辆为起点，以实验依据连接物理与数字世界。点击六个技术环节，了解各自的作用、已有基础和接入路径。</p></div>
+      <div class="eco-console reveal">
+        <div class="eco-console-top"><div class="eco-console-label"><span class="eco-console-mark" aria-hidden="true">✳</span><div><strong>从物理作业，到数字映射</strong><span>ATLAS / TECHNOLOGY ECOSYSTEM</span></div></div><div class="eco-key" aria-label="技术状态图例"><span><i aria-hidden="true"></i>已有能力</span><span><i aria-hidden="true"></i>演示预设</span><span><i aria-hidden="true"></i>待接入 / 验证</span></div></div>
+        <div class="eco-nodes" role="tablist" aria-label="铲运车与数字孪生技术环节">
+          <button type="button" id="eco-tab-vehicle" data-eco-node="vehicle" role="tab" aria-selected="true" aria-controls="eco-panel"><span class="eco-node-top"><span class="eco-node-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 16V11h4l2-5h8v10M7 11h10l4 3v3h-3M3 17h2m4 0h5M11 7v4m6 2h3"/><circle cx="7" cy="17" r="2"/><circle cx="16" cy="17" r="2"/></svg></span><span class="eco-node-index">01 / LHD</span></span><strong>车端与执行</strong><small data-stage="demo">车体空间预设</small></button>
+          <button type="button" id="eco-tab-sensing" data-eco-node="sensing" role="tab" aria-selected="false" aria-controls="eco-panel" tabindex="-1"><span class="eco-node-top"><span class="eco-node-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><path d="M8 6a7 7 0 0 0 0 12M16 6a7 7 0 0 1 0 12M5 3a11 11 0 0 0 0 18M19 3a11 11 0 0 1 0 18M12 2v5m0 10v5"/></svg></span><span class="eco-node-index">02 / SENSE</span></span><strong>感知与安装</strong><small data-stage="ready">已有雷达与视频</small></button>
+          <button type="button" id="eco-tab-edge" data-eco-node="edge" role="tab" aria-selected="false" aria-controls="eco-panel" tabindex="-1"><span class="eco-node-top"><span class="eco-node-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="3"/><rect x="10" y="10" width="4" height="4" rx="1"/><path d="M9 3v3m6-3v3M9 18v3m6-3v3M3 9h3m-3 6h3m12-6h3m-3 6h3"/></svg></span><span class="eco-node-index">03 / EDGE</span></span><strong>边缘与通信</strong><small data-stage="ready">树莓派已接入</small></button>
+          <button type="button" id="eco-tab-intelligence" data-eco-node="intelligence" role="tab" aria-selected="false" aria-controls="eco-panel" tabindex="-1"><span class="eco-node-top"><span class="eco-node-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5M12 3v10"/><circle cx="12" cy="13" r="2"/></svg></span><span class="eco-node-index">04 / AI</span></span><strong>空间与智能</strong><small data-stage="ready">已有 YOLOv8m</small></button>
+          <button type="button" id="eco-tab-twin" data-eco-node="twin" role="tab" aria-selected="false" aria-controls="eco-panel" tabindex="-1"><span class="eco-node-top"><span class="eco-node-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m3 7 6-3 6 3v10l-6 3-6-3V7Zm0 0 6 3 6-3M9 10v10m8-16 4 2v10l-4 2M17 9l4-3"/></svg></span><span class="eco-node-index">05 / TWIN</span></span><strong>孪生与场景</strong><small data-stage="demo">已有作业演示</small></button>
+          <button type="button" id="eco-tab-validation" data-eco-node="validation" role="tab" aria-selected="false" aria-controls="eco-panel" tabindex="-1"><span class="eco-node-top"><span class="eco-node-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6Zm0 0v6h6M8 14l3 3 5-5"/></svg></span><span class="eco-node-index">06 / VERIFY</span></span><strong>数据与验证</strong><small data-stage="ready">已有回放复核</small></button>
+        </div>
+        <div class="eco-panel" id="eco-panel" role="tabpanel" aria-labelledby="eco-tab-vehicle">
+          <div class="eco-map">
+            <div class="eco-map-caption"><span>PHYSICAL ↔ DIGITAL</span><span>技术关系示意</span></div>
+            <svg viewBox="0 0 760 380" role="img" aria-label="铲运车物理作业空间与数字孪生空间的技术关系示意。观测与状态经坐标及时间对应映射到数字空间，实验记录用于离线复核。流动连线表示技术关系，不表示实时通信状态。">
+              <defs><pattern id="eco-map-grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" class="eco-grid-lines"/></pattern></defs>
+              <rect x="18" y="20" width="724" height="340" fill="url(#eco-map-grid)"/><rect class="eco-domain-surface" x="31" y="19" width="316" height="337" rx="20"/><rect class="eco-domain-surface digital" x="413" y="19" width="316" height="337" rx="20"/>
+              <path class="eco-link" d="M256 145C330 86 430 86 504 145"/><path class="eco-signal" d="M256 145C330 86 430 86 504 145"/>
+              <path class="eco-link" d="M504 267C430 318 330 318 256 267"/><path class="eco-signal return" d="M504 267C430 318 330 318 256 267"/>
+              <text class="eco-link-label" x="380" y="82">观测 · 状态映射</text><text class="eco-world-label" x="380" y="101">坐标 / 时间 / 来源</text>
+              <text class="eco-link-label" x="380" y="325">记录 · 离线复核</text><text class="eco-world-label" x="380" y="344">标定 / 条件 / 版本</text>
+              <g class="eco-domain" data-eco-domain="physical">
+                <ellipse class="eco-ring" cx="196" cy="235" rx="152" ry="69"/><ellipse class="eco-ring" cx="196" cy="235" rx="122" ry="53"/><path d="M43 235H349M196 167V303" stroke="#6ec4b328" stroke-dasharray="3 6"/>
+                <path d="M67 241L194 174L327 233L195 302Z" fill="#16353155" stroke="#70c4af22"/>
+                <g stroke="#6a9e9c" stroke-width="1.1" stroke-linejoin="round">
+                  <path d="M91 208L196 171L267 201L166 243Z" fill="#477d7e"/><path d="M91 208V239L166 273V243Z" fill="#294e59"/><path d="M166 243L267 201V230L166 273Z" fill="#396976"/>
+                  <path d="M130 189L170 175L196 186L156 201Z" fill="#94b5aa"/><path d="M130 189V149L156 161V201Z" fill="#487c82"/><path d="M156 161L196 146V186L156 201Z" fill="#528b92"/><path d="M130 149L170 135L196 146L156 161Z" fill="#b1cab8"/>
+                  <path d="M137 153V181L151 187V160Z" fill="#a3c9ca" stroke="#93cbd1"/><path d="M164 163L187 154V178L164 187Z" fill="#83bbc2" stroke="#a4ced1"/>
+                  <path d="M228 215L281 227L294 220L243 200Z" fill="#8b9368"/><path d="M255 218L287 222L296 211L264 207Z" fill="#a9b87e"/><path d="M274 227L301 215L329 230L305 250Z" fill="#d2bb7e"/><path d="M274 227L281 249L305 261V250Z" fill="#7b794e"/><path d="M305 250L329 230L331 245L305 261Z" fill="#acaa73"/>
+                  <ellipse cx="119" cy="239" rx="17" ry="24" transform="rotate(-20 119 239)" fill="#12242c"/><ellipse cx="119" cy="239" rx="8" ry="13" transform="rotate(-20 119 239)" fill="#8baba9"/>
+                  <ellipse cx="188" cy="249" rx="19" ry="26" transform="rotate(16 188 249)" fill="#142b34"/><ellipse cx="188" cy="249" rx="9" ry="14" transform="rotate(16 188 249)" fill="#8baba9"/>
+                  <ellipse cx="248" cy="224" rx="17" ry="23" transform="rotate(16 248 224)" fill="#142b34"/><ellipse cx="248" cy="224" rx="8" ry="12" transform="rotate(16 248 224)" fill="#8baba9"/>
+                </g>
+                <path d="M167 138V128" stroke="#7ce4c4" stroke-width="5"/><ellipse cx="167" cy="126" rx="9" ry="4" fill="#99e5cd"/><ellipse cx="167" cy="125" rx="28" ry="11" fill="none" stroke="#72ddbd55"/><ellipse cx="167" cy="125" rx="43" ry="17" fill="none" stroke="#72ddbd29"/>
+                <text class="eco-diagram-title" x="196" y="47">物理作业空间</text><text class="eco-diagram-sub" x="196" y="67">LHD / SENSORS / RASPBERRY PI</text><text class="eco-world-label" x="196" y="333">车体参考 · 传感器观测 · 树莓派接入</text>
+              </g>
+              <g class="eco-domain" data-eco-domain="digital">
+                <ellipse class="eco-ring digital" cx="566" cy="235" rx="147" ry="69"/><ellipse class="eco-ring digital" cx="566" cy="235" rx="117" ry="53"/>
+                <path d="M430 236L564 171L703 234L567 304Z" fill="#1b365838" stroke="#749bd95a"/>
+                <g fill="none" stroke="#74abd558" stroke-width="1"><path d="M448 243V169L493 135L543 158V198M486 263V181L533 147L581 170V217M529 282V201L574 165L625 188V236M570 297V219L616 185L666 207V254"/><path d="M448 169L570 219M493 135L616 185M543 158L666 207M448 243L570 297M543 198L666 254"/></g>
+                <g fill="#18384d" stroke="#8ccae4" stroke-width="1.2" stroke-linejoin="round"><path d="M492 215L567 188L621 211L550 242Z"/><path d="M492 215V239L550 264V242Z"/><path d="M550 242L621 211V234L550 264Z"/><path d="M521 204V170L543 180V213Z"/><path d="M543 180L571 170V202L543 213Z"/><path d="M521 170L550 159L571 170L543 180Z"/><path d="M597 228L645 231L663 218L629 212L613 220M639 230L644 245L666 235L663 218"/><ellipse cx="511" cy="237" rx="12" ry="18"/><ellipse cx="564" cy="247" rx="13" ry="19"/><ellipse cx="610" cy="227" rx="12" ry="17"/></g>
+                <g fill="#86cbdc"><circle cx="448" cy="169" r="2"/><circle cx="493" cy="135" r="2"/><circle cx="543" cy="158" r="2"/><circle cx="533" cy="147" r="2"/><circle cx="574" cy="165" r="2"/><circle cx="616" cy="185" r="2"/><circle cx="666" cy="207" r="2"/></g>
+                <path d="M678 185V208M668 196H688" stroke="#b3d88c"/><circle cx="678" cy="178" r="5" fill="none" stroke="#b3d88c"/><path d="M678 208L671 224M678 208L685 224" stroke="#b3d88c"/>
+                <text class="eco-diagram-title" x="566" y="47">数字映射空间</text><text class="eco-diagram-sub" x="566" y="67">SCENE / PERCEPTION / EVIDENCE</text><text class="eco-world-label" x="566" y="333">当前预设演示 · 实测驱动待接入</text>
+              </g>
+              <g class="eco-atlas-hub" transform="translate(380 204)"><circle class="eco-hub-halo" r="36" fill="none" stroke="#87c8b620"/><circle r="27" fill="#10232c" stroke="#87c8b651"/><path d="M-12 -7H12L6 -13M12 7H-12L-6 13" fill="none" stroke="#9bdccb" stroke-width="1.5"/><text class="eco-world-label" y="49">ATLAS</text></g>
+            </svg>
+            <div class="eco-focus-chip"><b id="eco-number">01</b><span id="eco-focus">从物理车体出发：+X 前、+Y 左、+Z 上。</span></div>
+            <p class="eco-map-note">连线说明技术协作关系；图中场景与动效不表示实时数据传输。</p>
+          </div>
+          <aside class="eco-detail" aria-live="polite" aria-atomic="true">
+            <p class="eyebrow" id="eco-kicker">VEHICLE / PHYSICAL FOUNDATION</p><h3 id="eco-title">车端与执行系统</h3><p id="eco-description">以铲运车为物理载体，用车体坐标表达车身、铲斗与传感器的安装关系。树莓派已接入，下一步完善车体反馈与数字模型的对应关系。</p><span class="eco-status" id="eco-status" data-stage="demo">已有车体预设 · 状态映射待验证</span>
+            <dl><div><dt>基础输入</dt><dd id="eco-input">车体原点、结构尺寸、传感器安装位置。</dd></div><div><dt>连接到什么</dt><dd id="eco-output">车速、转向角、工作装置和设备状态的映射规划。</dd></div><div><dt>下一步验证</dt><dd id="eco-dependency">底盘协议、单位、采样频率及实车反馈需确认；展示站不下发控制指令。</dd></div></dl>
+            <a id="eco-link" class="eco-detail-link" href="#workspace"><span>查看车辆空间预设</span><b aria-hidden="true">↗</b></a>
+          </aside>
+        </div>
+      </div>
+      <div class="eco-contract reveal"><div><p>01 / SHARED REFERENCE</p><h3>先统一“在哪里”</h3><span>明确车体原点、坐标方向与单位，核对传感器外参，让模型、地图和观测使用可解释的空间参考。</span></div><div><p>02 / TRACEABLE STATE</p><h3>再说明“何时发生”</h3><span>规划时间戳、序号、来源和质量标记。把设备在线、数据新鲜度、模型预设与实测状态分开呈现。</span></div><div><p>03 / VALIDATED MAPPING</p><h3>最后验证“是否对应”</h3><span>从单设备接入到多源对齐，再到地图与车辆状态映射，逐步检查延迟、误差与回放的一致性。</span></div></div>
+      <div class="eco-boundary"><strong>当前生态阶段</strong><span>树莓派已接入，已有采集观察与复核基础。孪生场景采用预设驱动；实测状态映射、融合定位与移动建图继续推进验证。</span><a href="#twin-viewer">体验 LHD 作业演示 <b aria-hidden="true">↗</b></a></div>
+    </section>
+
+    <section class="capabilities section-light" id="capabilities">
+      <div class="section-heading reveal"><p class="eyebrow">07 / CORE CAPABILITIES</p><span class="section-index">六个模块，连接一次完整实验</span></div>
+      <div class="capability-layout">
+        <div class="capability-intro reveal"><h2>看见空间，<br>也看懂<span class="serif-accent">过程。</span></h2><p>从一帧观测到一次复核，了解每个模块接收什么、可以做什么，以及留下什么。</p><div class="module-progress"><span id="module-number">01</span><i></i><span>06</span></div><div class="capability-route"><span>FIND YOUR STARTING POINT</span><p>让功能围绕实验问题展开。</p><a href="#workspace" data-demo-target="radar">想看清空间结构 <span>↗</span></a><a href="#workspace" data-demo-target="vision">想了解人员候选 <span>↗</span></a><a href="#evidence-journey">想追溯一条判断 <span>↗</span></a></div></div>
+        <div class="module-stack reveal" aria-label="平台六类能力"><article class="module is-open"><h3><button class="module-toggle" id="module-button-0" aria-expanded="true" aria-controls="module-panel-0"><span class="module-no">01</span><span>雷达感知<small>LIDAR + MMWAVE</small></span><b>−</b></button></h3><div class="module-panel" id="module-panel-0" role="region" aria-labelledby="module-button-0"><span class="module-status">已有观测与测距界面</span><p>从点的分布读出空间结构。在同一个工作空间中对照激光与毫米波回波，用方向选区聚焦局部区域，保留各自的坐标与来源。</p><div class="module-flow"><div><span>INPUT</span><h4>选择观测</h4><p>原始 XYZ 点云、毫米波回波与关联记录。</p></div><div><span>EXPLORE</span><h4>调整视角</h4><p>旋转、着色、累积窗口与方向范围。</p></div><div><span>INSPECT</span><h4>查看局部</h4><p>观察选区内距离、点数与回波分布。</p></div></div><div class="module-output"><i aria-hidden="true">↗</i><div><strong>得到什么</strong><p>原生点云视图、方向内距离统计，以及可以回到源帧的观测线索。</p></div></div><div class="module-boundary">点云显示不等于移动 SLAM；两种雷达的空间对应仍取决于外参验证。</div><a class="module-link" href="#workspace" data-demo-target="direction">体验定向测距<span aria-hidden="true">↗</span></a></div></article><article class="module"><h3><button class="module-toggle" id="module-button-1" aria-expanded="false" aria-controls="module-panel-1"><span class="module-no">02</span><span>视觉感知<small>CAMERA + YOLOv8m</small></span><b>+</b></button></h3><div class="module-panel" id="module-panel-1" role="region" aria-labelledby="module-button-1" hidden><span class="module-status">已有视频与候选检测</span><p>直接读取电脑内置或 USB 摄像头，也可分析实验录像。官方预训练 YOLOv8m 提供人员候选，将原画面与模型输出放在一起观察。</p><div class="module-flow"><div><span>INPUT</span><h4>选择画面</h4><p>本机视频流或已经采集的实验录像。</p></div><div><span>DETECT</span><h4>查看候选</h4><p>调整阈值，观察检测框与置信度。</p></div><div><span>REVIEW</span><h4>回看依据</h4><p>切换原画面，检查遮挡、漏检与误检。</p></div></div><div class="module-output"><i aria-hidden="true">↗</i><div><strong>得到什么</strong><p>人员候选框、模型输出与推理状态；为后续人工复核保留图像依据。</p></div></div><div class="module-boundary">候选框不直接等于三维位置、跨帧身份或动作类别；云台目前为方向预设。</div><a class="module-link" href="#workspace" data-demo-target="vision">体验候选筛选<span aria-hidden="true">↗</span></a></div></article><article class="module"><h3><button class="module-toggle" id="module-button-2" aria-expanded="false" aria-controls="module-panel-2"><span class="module-no">03</span><span>车辆空间<small>VEHICLE-CENTERED VIEW</small></span><b>+</b></button></h3><div class="module-panel" id="module-panel-2" role="region" aria-labelledby="module-button-2" hidden><span class="module-status pending">树莓派已接入 · 车体映射待验证</span><p>以铲运车为观察中心，统一 +X 前、+Y 左、+Z 上。通过三维车体与人员位置预设，直观讨论安装方位、观察方向和接入后的显示方式。</p><div class="module-flow"><div><span>ORIGIN</span><h4>确定原点</h4><p>明确车体坐标约定与传感器安装位置。</p></div><div><span>PRESET</span><h4>调整布局</h4><p>改变人员位置，旋转或切换俯视。</p></div><div><span>CONNECT</span><h4>完善映射</h4><p>核对车体反馈字段、外参与移动建图条件。</p></div></div><div class="module-output"><i aria-hidden="true">↗</i><div><strong>得到什么</strong><p>直观的车体参考、人员相对方位预设和车辆监测界面设计基础。</p></div></div><div class="module-boundary">模型为展示简模，尺寸不作为 CAD 测量；手动人员预设不是实测定位。</div><a class="module-link" href="#workspace" data-demo-target="vehicle">探索车辆空间<span aria-hidden="true">↗</span></a></div></article><article class="module"><h3><button class="module-toggle" id="module-button-3" aria-expanded="false" aria-controls="module-panel-3"><span class="module-no">04</span><span>回放与复核<small>REPLAY + HUMAN REVIEW</small></span><b>+</b></button></h3><div class="module-panel" id="module-panel-3" role="region" aria-labelledby="module-button-3" hidden><span class="module-status">已有回放与记录工具</span><p>把录像、点云与模型候选放回同一条时间线索。先看原始观测，再留下独立的人工判断，让结论能够回查。</p><div class="module-flow"><div><span>LOCATE</span><h4>定位片段</h4><p>使用逐帧、倍速和时间轴找到目标时刻。</p></div><div><span>COMPARE</span><h4>对照观测</h4><p>查看源帧关联的画面、点云与候选。</p></div><div><span>RETAIN</span><h4>保留判断</h4><p>记录人工关联、备注与复核状态。</p></div></div><div class="module-output"><i aria-hidden="true">↗</i><div><strong>得到什么</strong><p>带来源的人工复核记录，以及用于回查和实验对比的导出信息。</p></div></div><div class="module-boundary">按主机时间关联不等于硬件曝光同步；未复核候选不能作为真值。</div><a class="module-link" href="#evidence-journey">查看复核过程<span aria-hidden="true">↗</span></a></div></article><article class="module"><h3><button class="module-toggle" id="module-button-4" aria-expanded="false" aria-controls="module-panel-4"><span class="module-no">05</span><span>设备与标定<small>DEVICE + CALIBRATION</small></span><b>+</b></button></h3><div class="module-panel" id="module-panel-4" role="region" aria-labelledby="module-button-4" hidden><span class="module-status">已有状态与依据查看</span><p>在开始采集前，先确认设备连接、观测来源和标定依据。把“是否有数据”和“是否能对齐”分开检查，减少对空间关系的误判。</p><div class="module-flow"><div><span>STATUS</span><h4>检查设备</h4><p>查看雷达、摄像头及相关服务状态。</p></div><div><span>EVIDENCE</span><h4>核对标定</h4><p>查阅相机内参与传感器外参依据。</p></div><div><span>VERIFY</span><h4>确认适用</h4><p>核对安装关系、时间依据与验证状态。</p></div></div><div class="module-output"><i aria-hidden="true">↗</i><div><strong>得到什么</strong><p>设备状态、标定依据与待验证事项，为多传感器实验提供明确起点。</p></div></div><div class="module-boundary">显示标定文件不代表标定已经验证；安装改变后需要重新核对坐标关系。</div><a class="module-link" href="#architecture">了解系统数据路径<span aria-hidden="true">↗</span></a></div></article><article class="module"><h3><button class="module-toggle" id="module-button-5" aria-expanded="false" aria-controls="module-panel-5"><span class="module-no">06</span><span>环境与条件实验<small>ENVIRONMENT + MIE</small></span><b>+</b></button></h3><div class="module-panel" id="module-panel-5" role="region" aria-labelledby="module-button-5" hidden><span class="module-status pending">仿真研究 · 粉尘测量待接入</span><p>保留清洁原始点云，把环境条件与派生算法结果分开组织。结合既有 Mie 研究，逐步建立可对比、可复查的处理方案。</p><div class="module-flow"><div><span>BASELINE</span><h4>保留基线</h4><p>原始观测作为对照，不被派生结果覆盖。</p></div><div><span>CONDITION</span><h4>明确条件</h4><p>记录粒子假设、光学条件与算法参数。</p></div><div><span>EVALUATE</span><h4>比较方案</h4><p>对照不同条件下的观测与处理结果。</p></div></div><div class="module-output"><i aria-hidden="true">↗</i><div><strong>得到什么</strong><p>从环境测量到光学条件，再到感知方案评估的实验路径。</p></div></div><div class="module-boundary">OPC-N3 尚待接入与标定；当前没有粉尘实测输入，PM2.5 不直接等同于光学厚度。</div><a class="module-link" href="#research">查看环境研究路径<span aria-hidden="true">↗</span></a></div></article></div>
+      </div>
+      <div class="evidence-journey" id="evidence-journey">
+        <div class="evidence-heading reveal"><div><p class="eyebrow">FOLLOW THE EVIDENCE</p><h3>一次观测，如何成为<br><span>可追溯的记录。</span></h3></div><p>沿着四个步骤，查看来源、观测与人工判断如何各自留存。点击下面的步骤，探索记录的结构。</p></div>
+        <div class="evidence-tabs reveal" role="tablist" aria-label="实验记录流程">
+          <button type="button" id="evidence-step-0" data-evidence-step="0" role="tab" aria-controls="evidence-panel" aria-selected="true"><b>01</b><span>选择片段<small>SELECT SOURCE</small></span></button>
+          <button type="button" id="evidence-step-1" data-evidence-step="1" role="tab" aria-controls="evidence-panel" aria-selected="false" tabindex="-1"><b>02</b><span>关联观测<small>OBSERVE TOGETHER</small></span></button>
+          <button type="button" id="evidence-step-2" data-evidence-step="2" role="tab" aria-controls="evidence-panel" aria-selected="false" tabindex="-1"><b>03</b><span>独立复核<small>HUMAN REVIEW</small></span></button>
+          <button type="button" id="evidence-step-3" data-evidence-step="3" role="tab" aria-controls="evidence-panel" aria-selected="false" tabindex="-1"><b>04</b><span>导出留存<small>RETAIN EVIDENCE</small></span></button>
+        </div>
+        <div class="evidence-panel reveal" id="evidence-panel" role="tabpanel" aria-labelledby="evidence-step-0">
+          <div class="evidence-copy"><p class="eyebrow" id="evidence-kicker">01 / SELECT</p><h4 id="evidence-title">先找到这一帧来自哪里</h4><p id="evidence-description">从采集片段进入时间轴，保留录像、雷达记录和源帧标识。后续每一次查看都能回到同一个起点。</p><ul id="evidence-checks"><li>选择片段与观测时间</li><li>保留原始记录，不覆盖源数据</li><li>确认视频与雷达时间依据</li></ul></div>
+          <div class="evidence-record"><div class="record-top"><span id="record-label">SOURCE / 来源示例</span><span id="record-step">01 / 04</span></div><div class="record-origin"><i aria-hidden="true">⌖</i><div>一条记录的组成<small>ATLAS / RECORD ANATOMY</small></div></div><dl id="evidence-fields"><div><dt>记录片段</dt><dd>clip_demo_01</dd></div><div><dt>源帧标识</dt><dd>frame_00128</dd></div><div><dt>时间依据</dt><dd>主机时间 · 示例</dd></div><div><dt>数据性质</dt><dd>格式示例，非采集记录</dd></div></dl><p class="record-note">◇ 格式演示 · 不代表实际采集或已完成复核</p></div>
+        </div>
+        <p class="evidence-caption">此处用于解释工作流程；真实数据的查看、复核与导出在本机实验工作台中完成。</p>
+      </div>
+    </section>
+
+    <section class="research section-dark" id="research">
+      <div class="section-heading reveal"><p class="eyebrow">08 / THE RESEARCH JOURNEY</p><span class="section-index">让每一步，都有依据</span></div>
+      <div class="research-heading reveal"><h2>从一帧观测，<br>走向可复核的<span>结论。</span></h2><p>把数据、模型与人工判断放在各自的位置。<br>让实验过程可查看，让每个结果可追溯。</p></div>
+      <ol class="journey reveal"><li><div><span>01</span><i>↗</i></div><h3>采集与接入</h3><p>读取项目采集记录，连接雷达服务与本机摄像头。</p><small>OBSERVE</small></li><li><div><span>02</span><i>↗</i></div><h3>时间与空间</h3><p>按源帧关联查看，保留原生坐标，检查标定依据。</p><small>ALIGN</small></li><li><div><span>03</span><i>↗</i></div><h3>检测与对比</h3><p>查看 YOLO 候选与既有算法输出，比较不同实验条件。</p><small>UNDERSTAND</small></li><li><div><span>04</span><i>↗</i></div><h3>复核与留存</h3><p>独立记录人工判断，导出带有来源信息的复核结果。</p><small>VERIFY</small></li></ol>
+      <div class="environment-panel reveal"><div class="environment-copy"><p class="eyebrow">ENVIRONMENT → MIE → EVALUATION</p><h3>把环境影响，<br>带入感知研究。</h3><p>以粒子测量和 Mie 条件实验为线索，研究环境变化对观测质量的影响，再比较相应的处理方案。</p><span class="status-label pending"><i></i> 粉尘传感器待接入与标定</span></div><div class="environment-flow"><div><span>01</span><h4>环境测量</h4><p>拟接入 OPC-N3<br>粒径分布与颗粒观测</p><b>待采集</b></div><i>→</i><div><span>02</span><h4>光学条件</h4><p>结合粒子假设与 Mie<br>建立光学条件范围</p><b>需标定</b></div><i>→</i><div><span>03</span><h4>方案评估</h4><p>保留清洁原始点云<br>比较派生算法结果</p><b>实验对比</b></div></div><p class="environment-note">当前 Mie 条件来自仿真研究，尚无粉尘实测输入；PM2.5 不直接等同于光学厚度。展示站不执行融合策略切换。</p></div>
+      <div class="roadmap reveal"><div><p class="eyebrow">WHERE WE ARE</p><h3>清楚当前，<br>才能走向下一步。</h3></div><div class="roadmap-column"><span class="status-label"><i class="signal-dot"></i> 已有能力</span><p>点云查看与测距 / 摄像头与 YOLO<br>源帧关联回放 / 人工复核 / 三维车体预设<br>树莓派接入</p></div><div class="roadmap-column"><span class="status-label pending"><i></i> 后续接入与验证</span><p>车体反馈映射 / 车体外参验证<br>移动 SLAM / 多人跨帧跟踪 / 动作识别</p></div></div>
+      <p class="research-note reveal">当前软件支持实验观察与分析；示意场景、手动人员预设和真实测量明确区分。尚未宣称地下自动驾驶闭环或经验证的人员定位精度。</p>
+    </section>
+
+    <section class="resources section-dark" id="resources" aria-labelledby="resources-title">
+      <div class="section-heading reveal"><p class="eyebrow">09 / RESOURCES & ANSWERS</p><span class="section-index">先了解，再开始</span></div>
+      <div class="resource-grid">
+        <div class="resource-intro reveal"><h2 id="resources-title">把探索，<br>带回你的实验。</h2><p>查看平台能力、理解演示边界，<br>再选择适合自己的实验入口。</p><div class="resource-downloads"><a href="platform-brief.md" download="MineSense-Atlas-平台简介.md"><i aria-hidden="true">MD</i><span><strong>平台能力简介</strong><small>功能模块、操作方式与研究方向</small></span><b aria-hidden="true">↓</b></a><a href="visitor-guide.md" download="MineSense-Atlas-展示体验指南.md"><i aria-hidden="true">MD</i><span><strong>展示体验指南</strong><small>场景导览、交互操作与本机入口</small></span><b aria-hidden="true">↓</b></a></div></div>
+        <div class="faq-list reveal" aria-label="平台常见问题">
+          <details open><summary>这里的场景是真实设备的实时画面吗？</summary><p>展示站使用程序绘制的点云、三维简模和预设作业轨迹。地下矿道演示自动循环，不连接雷达、摄像头或车辆。真实采集、推理与数据复核需要进入本机实验工作台。</p></details>
+          <details><summary>当前已经可以进行哪些实验观察？</summary><p>现有软件具备激光与毫米波点云查看、定向测距、摄像头预览与官方预训练 YOLOv8m 推理、源帧关联回放、人工复核和设备标定状态查看。展示页上的四个交互模块帮助理解这些界面的使用方式。</p></details>
+          <details><summary>是否已经实现人员定位和车辆自动驾驶？</summary><p>人员候选检测、手动位置预设与真实三维定位属于不同环节。树莓派已接入；传感器外参、时间对应与车体反馈映射仍需验证。移动 SLAM、多人跟踪及自动驾驶闭环仍是后续研究与验证方向。</p></details>
+          <details><summary>如何安装并进入本机实验软件？</summary><p>在下方下载 Windows x64 安装包，安装后通过快捷方式启动 MineSense Atlas，浏览器将打开本机登录页。首次使用自行设置账号密码，再选择自己的实验数据目录。第三方上位机与 YOLO 推理环境需另行配置；展示网站不会自动启动设备。</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="software-download section-dark" id="download" aria-labelledby="download-title">
+      <div class="section-heading reveal"><p class="eyebrow">10 / THE DESKTOP WORKSPACE</p><span class="section-index">从展示，进入实验</span></div>
+      <div class="download-heading reveal"><h2 id="download-title">你的实验，<br><span>在本机继续。</span></h2><p>安装 MineSense Atlas，把空间观察、视觉感知与回放复核带入自己的实验电脑。<br>从一个账号，开始一段有依据的探索。</p></div>
+      <div class="download-layout">
+        <article class="download-package reveal" aria-labelledby="download-package-title">
+          <div class="download-package-head"><div class="desktop-mark" aria-hidden="true"><svg viewBox="0 0 36 36"><rect x="3" y="4" width="30" height="21" rx="3"/><path d="M12 32h12M18 25v7M11 18l7-10 7 10H11Zm4 0 3-4 3 4"/></svg></div><div><h3 id="download-package-title">MineSense Atlas</h3><p>LOCAL EXPERIMENT WORKSPACE</p></div></div>
+          <div class="release-badges"><span>Windows x64</span><span id="release-version">版本信息加载中</span><span class="release-state" id="release-status" role="status">读取发行信息</span></div>
+          <p>矿运感知建筑综合实验平台。以车体为空间参考，将雷达、视觉与实验记录汇入同一个工作台。</p>
+          <div class="download-actions"><a class="button" id="installer-download" role="link" aria-disabled="true" tabindex="-1" aria-describedby="download-access-text download-detail"><span id="download-label">安装包准备中</span><span aria-hidden="true">↓</span></a><a class="release-notes" id="release-notes" href="https://github.com/wxy11117/MineSense-Atlas-Public/releases" target="_blank" rel="noopener">发行说明 <span aria-hidden="true">↗</span></a></div>
+          <p class="download-detail" id="download-detail">下载信息将从已验证的发行记录读取。</p>
+          <div class="download-access"><svg aria-hidden="true" viewBox="0 0 18 18"><rect x="4" y="8" width="10" height="8" rx="2"/><path d="M6 8V5a3 3 0 0 1 6 0v3M9 11v2"/></svg><p id="download-access-text">安装包通过公开的 <a href="https://github.com/wxy11117/MineSense-Atlas-Public/releases" target="_blank" rel="noopener">GitHub Releases</a> 分发，无需项目访问权限。</p></div>
+          <details><summary>查看安装包校验值</summary><div class="checksum-content"><p>SHA-256 用于核对下载文件是否与本次发行一致。</p><code id="release-sha256">发布完成后显示</code><button id="copy-checksum" type="button" disabled>复制 SHA-256</button><p class="checksum-message" id="checksum-message" role="status"></p></div></details>
+          <noscript><p class="download-detail">请在 <a href="https://github.com/wxy11117/MineSense-Atlas-Public/releases">GitHub 发行页面</a> 下载最新可用安装包并查看校验值。</p></noscript>
+        </article>
+        <aside class="download-onboarding reveal" aria-labelledby="install-title"><p class="eyebrow">A CLEAR START / THREE STEPS</p><h3 id="install-title">准备好，进入你的工作台。</h3><ol class="install-steps"><li><div><strong>下载并安装</strong><p>在 Windows x64 电脑上运行安装包，通过安装后的 MineSense Atlas 快捷方式启动。</p></div></li><li><div><strong>创建本机账号</strong><p>首次使用自行设置账号和密码。后续登录进入工作台，账号保存在当前电脑。</p></div></li><li><div><strong>配置自己的实验</strong><p>安装后可启动工作台并使用本机摄像头预览。选择实验数据目录；实时 YOLO 需另行配置推理环境与权重。</p></div></li></ol><p class="install-footnote">软件使用本机服务。请以启动器自动打开的浏览器地址为准；展示网站与实验工作台分别运行。</p></aside>
+      </div>
+      <div class="download-boundary reveal"><div><strong>实验数据，由你选择</strong><p>安装包不包含项目原始采集记录、个人账号或已保存的复核数据。</p></div><div><strong>设备环境，按需配置</strong><p>官方雷达上位机、PyTorch / Ultralytics 推理环境与 YOLO 权重需另行安装或配置。</p></div><div><strong>从研究能力出发</strong><p>适用于实验观察、分析与复核；实际定位精度和车辆闭环需独立验证。</p></div></div>
+    </section>
+
+    <section class="experience section-light" id="experience">
+      <div class="experience-top reveal"><p class="eyebrow">EXPLORE MINESENSE ATLAS</p><span class="compass" aria-hidden="true">↗</span></div>
+      <h2 class="reveal">让每一次感知，<br>都有<span class="serif-accent">下一步。</span></h2>
+      <div class="experience-bottom reveal"><p>从空间观察出发，走向有依据的实验。<br>MineSense Atlas，与研究一同向前。</p><div><button type="button" class="button button-dark" id="open-local">打开本机工作台 <span>↗</span></button><a class="text-button dark-link" href="#twin-viewer">探索地下作业 <span>↗</span></a></div></div>
+    </section>
+  </main>
+  <footer class="flagship-footer"><div class="footer-main"><div><div class="footer-brand"><img src="assets/brand-logo.png" alt="QIONS DRIVE" width="210" height="75" loading="lazy"><span>MineSense Atlas<small>矿运感知建筑综合实验平台</small></span></div><p class="footer-statement">感知空间 · 理解环境 · 支撑实验<br>面向地下矿运研究的多传感器实验工作空间。</p></div><div class="footer-links"><div><strong>EXPLORE THE PLATFORM</strong><a href="#platform">平台概览</a><a href="#scenarios">研究应用场景</a><a href="#workspace">交互功能体验</a><a href="#twin-viewer">LHD 地下作业演示</a></div><div><strong>UNDERSTAND THE RESEARCH</strong><a href="#architecture">系统技术架构</a><a href="#capabilities">六类能力与流程</a><a href="#ecosystem">铲运车与数字孪生生态</a><a href="#research">研究路径与进展</a><a href="#resources">资料与常见问题</a><a href="#download">软件下载安装</a></div></div></div><div class="footer-bottom"><p>© 2026 MineSense Atlas · 官网展示站<span>探索多源感知、空间交互与实验复核。</span></p><div><button type="button" id="motion-toggle" aria-pressed="false">动效：开启</button><a href="#">返回顶部 ↑</a></div></div></footer>
+  <dialog id="workbench-dialog" aria-labelledby="workbench-dialog-title"><div class="dialog-bar"><h2 id="workbench-dialog-title">MineSense Atlas · 交互工作空间</h2><button type="button" class="close-dialog" aria-label="关闭放大工作空间">✕</button></div><div id="workbench-dialog-content"></div></dialog>
+  <dialog id="local-dialog" aria-labelledby="local-dialog-title"><button type="button" class="close-dialog" aria-label="关闭工作台入口">✕</button><p class="eyebrow">LOCAL WORKSPACE</p><h2 id="local-dialog-title">在采集电脑上，<br>继续你的实验。</h2><p>展示网站与实验工作台分别运行。</p><ol class="local-launch-guide"><li>安装 MineSense Atlas，打开安装后的桌面或开始菜单快捷方式。</li><li>浏览器自动进入本机登录页；首次使用自行创建账号密码。</li><li>进入工作台后选择实验数据目录，并配置所需设备。</li></ol><a class="button local-guide-download" href="#download">查看安装包与下载说明 <span aria-hidden="true">↓</span></a><form id="local-workspace-form"><label for="local-workspace-url">已启动软件？粘贴启动器提供的本机地址</label><div><input id="local-workspace-url" type="url" autocomplete="off" spellcheck="false" placeholder="http://127.0.0.1:端口/" required><button type="submit">打开工作台 ↗</button></div><p id="local-url-message" role="status"></p></form><div class="local-address">本机服务地址形如 http://127.0.0.1:端口/，实际以启动器打开的地址为准。</div><small>展示网站不会远程启动软件或设备。已安装用户可直接通过快捷方式再次打开工作台。</small></dialog>
+  <script src="models.js"></script>
+  <script src="workbench.js?v=9"></script>
+  <script src="app.js?v=9"></script>
+  <script src="capabilities.js"></script>
+  <script src="motion.js"></script>
+  <script src="atmosphere.js"></script>
+  <script src="twin-state.js"></script>
+  <script src="twin.js"></script>
+  <script src="flagship.js?v=7"></script>
+  <script src="ecosystem.js?v=9"></script>
+  <script src="downloads.js?v=1"></script>
+</body>
+</html>
