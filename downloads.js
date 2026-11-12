@@ -3,7 +3,7 @@
   'use strict';
   const $ = id => document.getElementById(id);
   const button = $('installer-download');
-  const repo = 'https://github.com/wxy11117/MineSense-Atlas-Public';
+  const repo = 'https://github.com/wxy11117/MineSense-Atlas-V1.0';
   let checksum = '';
   button.addEventListener('click', event => {
     if (button.getAttribute('aria-disabled') === 'true') event.preventDefault();

@@ -1,10 +1,10 @@
-# MineSense Atlas 0.3.2 安装与使用
+# MineSense Atlas 1.0 安装与使用
 
 适用 Windows 10 / 11 x64。安装包包含独立 Python 运行时，无需安装 Python；以当前用户身份安装，不要求管理员权限。此版本为科研实验软件，未进行代码签名。
 
 ## 首次使用
 
-1. 运行 `MineSense-Atlas-0.3.2-Setup-x64.exe`，完成安装。
+1. 运行 `MineSense-Atlas-1.0-Setup-x64.exe`，完成安装。
 2. 从开始菜单打开 **MineSense Atlas**。软件在本机回环地址启动，并自动打开浏览器。
 3. 自行设置本机账号和密码。没有预置账号，账号不会上传。
 4. 没有项目数据时，工作台显示明确的空状态；车辆页面仍可查看坐标与布局预设，视觉感知可选择电脑或 USB 摄像头。
@@ -41,6 +41,6 @@
 
 ## 校验与排障
 
-在 PowerShell 中使用 `Get-FileHash .\MineSense-Atlas-0.3.2-Setup-x64.exe -Algorithm SHA256`，与随包校验文件中的值比较。未签名的软件包可能触发 Windows SmartScreen，发布者没有被冒充为已认证签名者。
+在 PowerShell 中使用 `Get-FileHash .\MineSense-Atlas-1.0-Setup-x64.exe -Algorithm SHA256`，与随包校验文件中的值比较。未签名的软件包可能触发 Windows SmartScreen，发布者没有被冒充为已认证签名者。
 
 启动失败查看 `%LOCALAPPDATA%\MineSenseAtlas\server.log`。摄像头无法开启时检查 Windows 摄像头权限、USB 连接和其他软件占用。未连接实验数据时不能播放原始录像或计算历史实验结果。安装包不包含账号库、原始采集数据、复核结论和日志。

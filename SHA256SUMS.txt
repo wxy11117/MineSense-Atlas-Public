@@ -1,1 +1,1 @@
-8fba9742b660e476167eda03b239309aa45d0b48bd972aaa2b127d7391fb1ca1  MineSense-Atlas-0.3.2-Setup-x64.exe
+06e4843f83d7f833057320cca9268c17cfaf48e4f27f81da61c1daee434c88ad  MineSense-Atlas-1.0-Setup-x64.exe

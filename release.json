@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
-  "product": "MineSense Atlas",
-  "version": "0.3.2",
+  "product": "MineSense Atlas矿运感知智能铲运车综合实验平台V1.0",
+  "version": "1.0",
   "status": "published",
   "platform": "Windows x64",
   "repository_private": false,
-  "release_url": "https://github.com/wxy11117/MineSense-Atlas-Public/releases/tag/v0.3.2",
+  "release_url": "https://github.com/wxy11117/MineSense-Atlas-V1.0/releases/tag/v1.0",
   "asset": {
-    "filename": "MineSense-Atlas-0.3.2-Setup-x64.exe",
-    "url": "https://github.com/wxy11117/MineSense-Atlas-Public/releases/download/v0.3.2/MineSense-Atlas-0.3.2-Setup-x64.exe",
-    "size_bytes": 45660526,
-    "sha256": "8fba9742b660e476167eda03b239309aa45d0b48bd972aaa2b127d7391fb1ca1"
+    "filename": "MineSense-Atlas-1.0-Setup-x64.exe",
+    "url": "https://github.com/wxy11117/MineSense-Atlas-V1.0/releases/download/v1.0/MineSense-Atlas-1.0-Setup-x64.exe",
+    "size_bytes": 45657402,
+    "sha256": "06e4843f83d7f833057320cca9268c17cfaf48e4f27f81da61c1daee434c88ad"
   }
 }

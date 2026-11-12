@@ -1,14 +1,14 @@
-# MineSense Atlas
+# MineSense Atlas矿运感知智能铲运车综合实验平台V1.0
 
-矿运感知建筑综合实验平台 · 官方展示与 Windows x64 软件发行
+矿运感知智能铲运车综合实验平台 · 官方展示与 Windows x64 软件发行
 
 本仓库提供官网展示页面、软件安装包、安装说明和文件校验值。软件采用本机服务与浏览器界面：安装后从开始菜单启动，在当前电脑的浏览器中使用。
 
-[访问 MineSense Atlas 官网](https://wxy11117.github.io/MineSense-Atlas-Public/)
+[访问 MineSense Atlas 官网](https://wxy11117.github.io/MineSense-Atlas-V1.0/)
 
 ## 下载
 
-[下载最新 Windows 安装包](https://github.com/wxy11117/MineSense-Atlas-Public/releases/latest)
+[下载最新 Windows 安装包](https://github.com/wxy11117/MineSense-Atlas-V1.0/releases/latest)
 
 支持 Windows 10 / 11 x64，内置 Python 运行时，按当前 Windows 用户安装。当前版本未进行代码签名。
 
