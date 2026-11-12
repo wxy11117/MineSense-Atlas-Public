@@ -37,7 +37,7 @@
       const response = await fetch('release.json', {cache:'no-cache'});
       if (!response.ok) throw new Error('metadata unavailable');
       const data = await response.json();
-      if (data.schema_version !== 1 || !/^\d+\.\d+\.\d+$/.test(data.version)) throw new Error('invalid metadata');
+      if (data.schema_version !== 1 || !/^\d+\.\d+(?:\.\d+)?$/.test(data.version)) throw new Error('invalid metadata');
       $('release-version').textContent = `v${data.version}`;
       const asset = data.asset || {};
       const expectedName = `MineSense-Atlas-${data.version}-Setup-x64.exe`;
